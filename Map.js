@@ -47,22 +47,6 @@ var Utrecht = L.marker([52.0907, 5.1214]).bindPopup('Utrecht'),
 var Hoofdsteden = L.layerGroup([Utrecht, DenHaag, DenBosch, Haarlem, Zwolle, Leeuwarden, Groningen, Maastricht, middelburg, lelystad, assen]);
 //#endregion
 
-//#region Layer 3
-
-// Success handler
-map.on('locationfound', function(e) {
-    L.marker(e.latlng)
-    .addTo(map)
-    .bindPopup("You are here!")
-    .openPopup();
-    
-    // Show accuracy circle
-    L.circle(e.latlng, { radius: e.accuracy }).addTo(map);
-});
-
-map.locate({ setView: true, maxZoom: 16 });
-//#endregion
-
 //#region MAP INITIALIZATION
 // de kaart centreren op Nederland
 var netherlandsBounds = L.latLngBounds(L.latLng(50.7, 3.3), L.latLng(53.7, 7.3));
