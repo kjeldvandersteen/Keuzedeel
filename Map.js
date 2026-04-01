@@ -42,6 +42,21 @@ var Utrecht = L.marker([52.0907, 5.1214]).bindPopup('Utrecht<br> Inwoners: 357.1
 var Hoofdsteden = L.layerGroup([Utrecht, DenHaag, DenBosch, Haarlem, Zwolle, Leeuwarden, Groningen, Maastricht, middelburg, lelystad, assen]);
 //#endregion
 
+//#region GPS
+var GPS = L.layerGroup();;
+navigator.geolocation.getCurrentPosition(success);
+
+function success(position) {
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+
+     L.marker([lat, lon])
+        .bindPopup("Je bent hier!")
+        .openPopup()
+        .addTo(GPS);
+}
+//#endregion
+
 //#region MAP INITIALIZATION
 // de kaart centreren op Nederland
 var netherlandsBounds = L.latLngBounds(L.latLng(50.7, 3.3), L.latLng(53.7, 7.3));
@@ -66,7 +81,8 @@ var baseMaps = {
 };
 var overlayMaps = {
     "hoofdsteden": Hoofdsteden,
-    "provincies": Provincies
+    "provincies": Provincies,
+    "GPS": GPS
 };
 
 var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
